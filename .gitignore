@@ -1,0 +1,10 @@
+.venv\
+node_modules\
+
+.env\
+.env
+
+backend\.env\
+
+__pycache__
+__pycache__\

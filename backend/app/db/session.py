@@ -7,7 +7,7 @@ from sqlalchemy.orm import sessionmaker
 
 load_dotenv()
 
-PORT = os.getenv("PORT", "5432")
+PORT = os.getenv("DB_PORT")
 USERNAME = os.getenv("DB_USERNAME")
 PASSWORD = os.getenv("DB_PASSWORD")
 DB_NAME = os.getenv("DB_NAME")
@@ -16,10 +16,11 @@ PASSWORD = quote_plus(PASSWORD)
 print("USERNAME:", USERNAME)
 print("PASSWORD:", PASSWORD)
 print("ENV FILE EXISTS:", os.path.exists(".env"))
+print("PORT:", PORT)
 
 DB_URL = f"postgresql://{USERNAME}:{PASSWORD}@localhost:{PORT}/{DB_NAME}"
 
-print("DB_URL:", DB_URL) 
+# print("DB_URL:", DB_URL) 
 
 
 engine = create_engine(DB_URL)

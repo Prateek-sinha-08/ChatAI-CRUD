@@ -33,7 +33,7 @@ def login_user(db: Session, username: str, password: str):
     
     token = create_access_token({"sub": user.username})
     
-    return {"access_token", token}
+    return {"access_token": token}
     
     
     

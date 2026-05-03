@@ -1,7 +1,7 @@
 import os
 import shutil
 
-from app.utils.file_safetly import get_safe_path
+from app.utils.file_safety import get_safe_path
 
 
 def create_file(path: str):
@@ -16,8 +16,9 @@ def create_file(path: str):
 
 def create_folder(path: str):
     safe_path = get_safe_path(path)
+    print(safe_path)
     
-    os.mkdir(safe_path, exist_ok = True) 
+    os.makedirs(safe_path, exist_ok = True) 
     
     return {"status": "Folder created", "path ": safe_path}
 

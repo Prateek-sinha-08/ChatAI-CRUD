@@ -2,29 +2,38 @@ import os
 import shutil
 
 from app.utils.file_safety import get_safe_path
+from app.models.user import User
 
+def list_files(path: str, user: User = None):
+    safe_path = get_safe_path(path, user.username)
 
-def create_file(path: str):
-    safe_path = get_safe_path(path)
+    if not os.path.exists(safe_path):
+        raise Exception("Path not found!")
+    
+    if os.path.isdir(safe_path):
+        items = os.listdir(safe_path)
+        return {"files": items}
+
+def create_file(path: str, content: str, user: User = None):
+    safe_path = get_safe_path(path, user.username)
     
     os.makedirs(os.path.dirname(safe_path), exist_ok=True)
     
     with open(safe_path, "w") as f:
-        f.write("")
+        f.write(content)
         
     return {"status": "file created", "path":safe_path}
 
-def create_folder(path: str):
-    safe_path = get_safe_path(path)
-    print(safe_path)
+def create_folder(path: str, content: str, user: User = None):
+    safe_path = get_safe_path(path, user.username)
     
     os.makedirs(safe_path, exist_ok = True) 
     
     return {"status": "Folder created", "path ": safe_path}
 
 
-def read_file(path: str):
-    safe_path = get_safe_path(path)
+def read_file(path: str, user: User = None):
+    safe_path = get_safe_path(path, user.username)
     
     if not os.path.exists(safe_path):
         raise Exception("file not found")
@@ -34,8 +43,8 @@ def read_file(path: str):
         
     return {"content ": content}
 
-def update_file(path: str, content: str, mode: str = "w"):
-    safe_path = get_safe_path(path)
+def update_file(path: str, content: str, mode: str = "w", user: User = None):
+    safe_path = get_safe_path(path, user.username)
     
     with open(safe_path, mode) as f:
         f.write(content)
@@ -43,9 +52,9 @@ def update_file(path: str, content: str, mode: str = "w"):
     return {"status": f"file {'updated' if mode == 'w' else 'appended'}"}
 
 
-def delete_path(path: str):
-    safe_path = get_safe_path(path)
-    
+def delete_path(path: str, user: User = None):
+    safe_path = get_safe_path(path, user.username)
+
     if os.path.isdir(safe_path):
         shutil.rmtree(safe_path)
         

@@ -5,7 +5,7 @@ psycopg2-binary
 python-jose 
 passlib 
 langchain 
-langgrap
+langgraph
 sqlalchemy
 
 psycopg2-binary

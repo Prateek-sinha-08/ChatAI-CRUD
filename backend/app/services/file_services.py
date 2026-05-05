@@ -11,20 +11,23 @@ from app.schemas.file_schema import FileRequest
 
 def handle_file_operations(req: FileRequest, db: Session, user: User):
 
-    if req.operation == "create_file":
-        res = file_tools.create_file(req.path)
+    if req.operation == "list":
+        res = file_tools.list_files(req.path, user)
+
+    elif req.operation == "create_file":
+        res = file_tools.create_file(req.path, req.content, user)
     
-    if req.operation == "create_folder":
-        res =file_tools.create_folder(req.path)
+    elif req.operation == "create_folder":
+        res =file_tools.create_folder(req.path, req.content, user)
     
     elif req.operation == "read":
-        res =file_tools.read_file(req.path)
+        res =file_tools.read_file(req.path, user)
     
     elif req.operation == "update":
-        res = file_tools.update_file(req.path, req.content, req.mode)
+        res = file_tools.update_file(req.path, req.content, req.mode, user)
     
     elif req.operation == "delete":
-        res = file_tools.delete_path(req.path)
+        res = file_tools.delete_path(req.path, user)
     
     else:
         raise HTTPException(status_code=400, detail="Invalid Operation")

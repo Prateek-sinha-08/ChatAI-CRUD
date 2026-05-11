@@ -8,6 +8,9 @@ backend/.env/
 
 __pycache__/
 venv/
+.venv/
+uv.lock/
+
 .github/
 .langgraph_api/
 langgraph_api/

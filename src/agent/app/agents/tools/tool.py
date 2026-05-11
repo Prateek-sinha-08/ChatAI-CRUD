@@ -1,7 +1,8 @@
 from langchain.tools import tool
-from backend.app.models import User
 
-from backend.app.tools.file_tools import list_files, create_file, create_folder, read_file, update_file, delete_path
+
+from src.agent.app.models.user import User
+from src.agent.app.tools.file_tools import list_files, create_file, create_folder, read_file, update_file, delete_path
 
 @tool
 def list_files_tool(path: str, user: User = None):

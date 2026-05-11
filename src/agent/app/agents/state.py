@@ -1,4 +1,4 @@
-from Typing import List, Optional, Dict
+from typing import List, Optional, Dict
 from typing_extensions import TypedDict, Annotated
 from langchain_core.messages import AnyMessage
 import operator

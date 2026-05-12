@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 
-from app.db.base import Base
-from app.db.session import engine
-from app.api.routes.file_routes import router as file_router
-from app.api.routes.auth_routes import router as auth_router
+from src.agent.app.db.base import Base
+from src.agent.app.db.session import engine
+from src.agent.app.api.routes.file_routes import router as file_router
+from src.agent.app.api.routes.auth_routes import router as auth_router
 
 app = FastAPI(
     title="Chat-AI CRUD Agent",

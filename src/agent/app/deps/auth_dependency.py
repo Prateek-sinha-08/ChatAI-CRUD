@@ -2,9 +2,9 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from fastapi import Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
-from app.core.security import decode_access_token
-from app.db.session import get_db
-from app.models.user import User
+from src.agent.app.core.security import decode_access_token
+from src.agent.app.db.session import get_db
+from src.agent.app.models.user import User
 
 #extracts the token from the request header, decodes it, and retrieves the user information from the database
 security = HTTPBearer() #reason for showing Authorization header in swagger UI.

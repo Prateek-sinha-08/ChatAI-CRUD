@@ -1,8 +1,8 @@
 import os
 import shutil
 
-from app.utils.file_safety import get_safe_path
-from app.models.user import User
+from src.agent.app.utils.file_safety import get_safe_path
+from src.agent.app.models.user import User
 
 def list_files(path: str, user: User = None):
     safe_path = get_safe_path(path, user.username)
@@ -24,7 +24,7 @@ def create_file(path: str, content: str, user: User = None):
         
     return {"status": "file created", "path":safe_path}
 
-def create_folder(path: str, content: str, user: User = None):
+def create_folder(path: str, user: User = None):
     safe_path = get_safe_path(path, user.username)
     
     os.makedirs(safe_path, exist_ok = True) 

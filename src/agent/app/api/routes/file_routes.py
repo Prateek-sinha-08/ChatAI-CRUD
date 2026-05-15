@@ -1,11 +1,10 @@
 from fastapi import APIRouter, Depends
-from app.db.session import get_db
 from sqlalchemy.orm import Session
 
-
-from app.services.file_services import handle_file_operations
-from app.schemas.file_schema import FileRequest
-from app.deps.auth_dependency import get_current_user
+from src.agent.app.db.session import get_db
+from src.agent.app.services.file_services import handle_file_operations
+from src.agent.app.schemas.file_schema import FileRequest
+from src.agent.app.deps.auth_dependency import get_current_user
 
 router = APIRouter()
 

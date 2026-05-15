@@ -4,10 +4,10 @@ from fastapi import HTTPException
 from datetime import datetime, timezone
 from sqlalchemy.orm import Session
 
-from app.tools import file_tools
-from app.models.user import User
-from app.models.file_log import FileLog
-from app.schemas.file_schema import FileRequest
+from src.agent.app.tools import file_tools
+from src.agent.app.models.user import User
+from src.agent.app.models.file_log import FileLog
+from src.agent.app.schemas.file_schema import FileRequest
 
 def handle_file_operations(req: FileRequest, db: Session, user: User):
 

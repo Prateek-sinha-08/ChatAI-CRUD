@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.sql import func
 
-from app.db.base import Base
+from src.agent.app.db.base import Base
 
 
 class FileLog(Base):

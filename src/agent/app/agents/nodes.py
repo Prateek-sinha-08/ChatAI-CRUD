@@ -1,11 +1,11 @@
-from langgraph.messages import ToolMessage, SystemMessage
+from langchain.messages import ToolMessage, SystemMessage
 from typing import Literal
 from langgraph.graph import END
 
 
 from src.agent.app.agents.state import AgentState
 from src.agent.app.agents.prompts import prompt
-from model import llm_with_tools, tools_by_name
+from src.agent.app.agents.model import llm_with_tools, tools_by_name
 # from src.app.core import 
 
 def router(state: AgentState) -> Literal["tool_node", END]:
@@ -14,7 +14,6 @@ def router(state: AgentState) -> Literal["tool_node", END]:
     if hasattr(last_message, "tool_calls") and last_message.tool_calls:
         return "tool_node"
     return END
-
 
 def llm_call(state: AgentState) -> AgentState:
     """LLM decides whether to call a tool or not"""
@@ -38,7 +37,8 @@ def tool_node(state: AgentState):
 
         result.append(
             ToolMessage(
-                content = tool_result)
+                content = tool_result),
+                tool_calls_id = tool_call["id"]
         )   
 
     return {"messages": result}

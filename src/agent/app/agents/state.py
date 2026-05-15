@@ -7,3 +7,4 @@ import operator
 class AgentState(TypedDict):
     messages: Annotated[List[AnyMessage], operator.add]
     user_id: Optional[str]
+    username: Optional[str]

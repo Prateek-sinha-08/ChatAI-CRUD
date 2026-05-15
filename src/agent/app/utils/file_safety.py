@@ -1,5 +1,5 @@
 import os
-from app.core.config import BASE_DIR
+from src.agent.app.core.config import BASE_DIR
 
 def get_user_base(username):
     user_dir = os.path.join(BASE_DIR, username)

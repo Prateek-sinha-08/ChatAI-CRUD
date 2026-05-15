@@ -1,7 +1,7 @@
 # define DB table
 
 from sqlalchemy import Column, Integer, String
-from app.db.base import Base
+from src.agent.app.db.base import Base
 
 class User(Base):
     __tablename__ = "users"

@@ -17,13 +17,16 @@ ipython
 
 fastapi 
 uvicorn
+
 sqlalchemy 
+sqlalchemy[asyncio]
 psycopg2-binary 
+
 python-jose 
 bcrypt>=4.0,<5
-sqlalchemy
 
 psycopg2-binary
 alembic
+asyncpg
 
 Typing

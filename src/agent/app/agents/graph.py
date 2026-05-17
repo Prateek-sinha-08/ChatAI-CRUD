@@ -2,7 +2,7 @@ from langgraph.graph import StateGraph, START, END
 from langchain.messages import SystemMessage, HumanMessage, ToolMessage
 
 
-from src.agent.app.agents.nodes import llm_call, router, tool_node
+from src.agent.app.agents.nodes import auth_node, llm_call, router, tool_node
 from src.agent.app.agents.state import AgentState
 
 state = {"messages": []}
@@ -14,11 +14,12 @@ load_dotenv()
 
 graph = StateGraph(AgentState)
 
+graph.add_node("auth_node", auth_node)
 graph.add_node("llm_call", llm_call)
 graph.add_node("tool_node", tool_node)
 
-graph.add_edge(START, "llm_call")
-# graph.add_edge("llm_call", "tool_node")
+graph.add_edge(START, "auth_node")
+graph.add_edge("auth_node", "llm_call")
 
 graph.add_conditional_edges(
     "llm_call", # source node

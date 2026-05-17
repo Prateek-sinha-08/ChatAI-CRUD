@@ -14,7 +14,9 @@ def get_current_user(
         db: Session = Depends(get_db)
 ):
     token = credentials.credentials
+    print("token in auth_dependency:", token)
     payload = decode_access_token(token)
+    print("payload in auth_dependency:", payload)
 
     username = payload.get("sub") #subject of the token, which is the username in this case
     if username is None:

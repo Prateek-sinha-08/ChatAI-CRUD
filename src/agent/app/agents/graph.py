@@ -1,5 +1,5 @@
 from langgraph.graph import StateGraph, START, END
-from langchain.messages import SystemMessage, HumanMessage, ToolMessage
+from langchain_core.messages import SystemMessage, HumanMessage, ToolMessage
 
 
 from src.agent.app.agents.nodes import auth_node, llm_call, router, tool_node
@@ -29,6 +29,6 @@ graph.add_conditional_edges(
 
 graph.add_edge("tool_node", "llm_call")
 
-agent = graph.compile()
+agent = graph.compile(debug = True)
 
 print("Finished compiling the agent")

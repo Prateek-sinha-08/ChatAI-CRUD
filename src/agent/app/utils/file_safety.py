@@ -1,9 +1,15 @@
 import os
+import logging
+
 from src.agent.app.core.config import BASE_DIR
+
+log = logging.getLogger(__name__)
+
 
 def get_user_base(username):
     user_dir = os.path.join(BASE_DIR, username)
     os.makedirs(user_dir, exist_ok = True)
+    log.info(f"User base directory for {username}: {user_dir}")
     return user_dir
 
 def get_safe_path(path, username=None):
@@ -14,4 +20,5 @@ def get_safe_path(path, username=None):
     if not full_path.startswith(user_base): 
         raise Exception("Invalid Path :", BASE_DIR)
     
+    log.info("full path resolved: %s", full_path)
     return full_path

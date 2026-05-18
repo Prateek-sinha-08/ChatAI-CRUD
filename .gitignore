@@ -15,3 +15,6 @@ uv.lock/
 .langgraph_api/
 langgraph_api/
 agent.egg-info/
+
+storage/
+logs/
